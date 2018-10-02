@@ -20,6 +20,8 @@ pipeline {
             sh 'curl -kLo cloudctl https://9.30.118.226:8443/api/cli/cloudctl-linux-amd64'
             sh 'chmod 755 cloudctl'
             sh './cloudctl login --skip-ssl-validation -a https://9.30.118.226:8443 -u admin -p admin -c id-mycluster-account -n default'
+            sh 'cp /home/jenkins/.cloudctl/clusters/mycluster/cert.pem /home/jenkins/.helm/cert.pem'
+            sh 'cp /home/jenkins/.cloudctl/clusters/mycluster/key.pem /home/jenkins/.helm/key.pem'
             sh 'helm version --tls'
             sh './helm_wrapper.sh version'
             sh 'jx edit helmbin helm_wrapper.sh'
