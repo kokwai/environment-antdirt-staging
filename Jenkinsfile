@@ -13,6 +13,9 @@ pipeline {
       steps {
         container('maven') {
           dir('env') {
+            sh 'curl -kLo helm-linux-amd64-v2.9.1.tar.gz https://9.30.118.226:8443/api/cli/helm-linux-amd64.tar.gz'
+            sh 'tar -xvf helm-linux-amd64-v2.9.1.tar.gz'
+            sh 'cp -f linux-amd64/helm /usr/bin/helm'
             sh 'wget https://gist.githubusercontent.com/kokwai/fe352638f8f2495176e337a9c7a1efa3/raw/103e34e0a66fe3cc53b8738c67a4b9896ce9cae3/helm_wrapper.sh'
             sh 'chmod 755 helm_wrapper.sh'
             sh 'which helm'
