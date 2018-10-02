@@ -18,9 +18,9 @@ pipeline {
             sh 'which helm'
             sh 'curl -kLo cloudctl https://9.30.118.226:8443/api/cli/cloudctl-linux-amd64'
             sh 'chmod 755 cloudctl'
-            sh 'cloudctl login --skip-ssl-validation -a https://mycluster.icp:8443 -u admin -p admin -c id-mycluster-account -n default'
+            sh './cloudctl login --skip-ssl-validation -a https://mycluster.icp:8443 -u admin -p admin -c id-mycluster-account -n default'
             sh 'helm version --tls'
-            sh 'helm_wrapper.sh version'
+            sh './helm_wrapper.sh version'
             sh 'jx edit helmbin helm_wrapper.sh'
             sh 'jx step helm build'
           }
